@@ -1,8 +1,12 @@
 spring:
+  jwt:
+
+    secret: ${JWT_SECRET:Y2hhbmdlLW1lLWluLXByb2R1Y3Rpb24tdGhpcy1pcy1hLWZha2UtdmFsdWU=}
+    expiration-ms: 86400000
   application:
     name: monitoring
 
-  # PostgreSQL (s? setup ? Phase 2)
+
   datasource:
     url: jdbc:postgresql://localhost:5432/monitoring
     username: monitoring
@@ -11,14 +15,14 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update    # dev mode; production s? ??i sang 'validate'
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  # Redis (s? setup ? Phase 6)
+
   data:
     redis:
       host: localhost
@@ -27,7 +31,7 @@ spring:
 server:
   port: 8080
 
-# Actuator endpoints (cho Prometheus sau này)
+
 management:
   endpoints:
     web:
@@ -37,7 +41,7 @@ management:
     health:
       show-details: always
 
-# Logging
+
 logging:
   level:
     root: INFO
